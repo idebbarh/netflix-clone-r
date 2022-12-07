@@ -1,0 +1,11 @@
+.homePage{
+    min-height: 10000px;
+    background-color: var(--main-background-color);
+    width: 100%;
+    overflow: hidden;
+}
+.homePage__mainContents{
+    margin-top: -20vw;
+    position: relative;
+    z-index: 1;
+}

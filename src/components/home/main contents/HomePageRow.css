@@ -1,0 +1,63 @@
+.homePageRow{
+    padding: 0 70px;
+    position: relative;
+    margin: 8vw 0;
+}
+.homePageRow__row{
+    position: relative;
+    display: flex;
+    gap: 0.5vw;
+    /*overflow-x: auto;
+    scroll-behavior: smooth;
+    */transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
+    -webkit-transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
+    -moz-transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
+    -ms-transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
+    -o-transition: transform .54s cubic-bezier(.5,0,.1,1) 0s;
+}
+
+.homePageRow__row::-webkit-scrollbar{
+    display: none;
+}
+.homePageRow__sliderArrow{
+    position: absolute;
+    bottom: 0;
+    color: var(--second-white-color);
+    cursor: pointer;
+    z-index: 2;
+    height: 72%;
+    width: 70px;
+    background-color: rgba(0, 0, 0, 0.394);
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s ease;
+    -webkit-transition: background-color 0.1s ease;
+    -moz-transition: background-color 0.1s ease;
+    -ms-transition: background-color 0.1s ease;
+    -o-transition: background-color 0.1s ease;
+}
+.homePageRow__sliderArrow > .MuiSvgIcon-root{
+    font-size: 2vw;
+    transition: font-size 0.1s ease;
+    -webkit-transition: font-size 0.1s ease;
+    -moz-transition: font-size 0.1s ease;
+    -ms-transition: font-size 0.1s ease;
+    -o-transition: font-size 0.1s ease;
+}
+.homePageRow__sliderArrow:hover{
+    background-color: rgba(0, 0, 0, 0.51);
+}
+.homePageRow__sliderArrow:hover > .MuiSvgIcon-root{
+    font-size: 2.4vw;
+}
+.homePageRow__sliderArrow.sliderArrow--left{
+    left: 0;
+    width: calc(70px - 0.5vw);
+    border-top-right-radius:0.2vw;
+    border-bottom-right-radius:0.2vw;
+}
+.homePageRow__sliderArrow.sliderArrow--right{
+    right: 0;
+    border-top-left-radius:0.2vw;
+    border-bottom-left-radius:0.2vw;
+}

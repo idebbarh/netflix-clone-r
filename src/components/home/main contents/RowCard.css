@@ -1,0 +1,33 @@
+.rowCard{
+    cursor: pointer;
+    min-width: calc(calc(100% / 6) - 0.5vw);
+    position: relative;
+}
+@media (max-width:1400px) {
+    .rowCard{
+        min-width: calc(calc(100% / 5) - 0.5vw)
+    }
+}
+@media (max-width:1100px) {
+    .rowCard{
+        min-width: calc(calc(100% / 4) - 0.5vw)
+    }
+}
+@media (max-width:800px) {
+    .rowCard{
+        min-width: calc(calc(100% / 3) - 0.5vw)
+    }
+}
+@media (max-width:500px) {
+    .rowCard{
+        min-width: calc(calc(100% / 2) - 0.5vw)
+    }
+}
+.rowCard > .rowCard__image{
+    max-width: 100%;
+    border-radius: 0.2vw;
+    -webkit-border-radius: 0.2vw;
+    -moz-border-radius: 0.2vw;
+    -ms-border-radius: 0.2vw;
+    -o-border-radius: 0.2vw;
+}

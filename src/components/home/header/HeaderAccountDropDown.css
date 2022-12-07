@@ -1,0 +1,24 @@
+.headerAccountDropDown{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.headerAccountDropDown__profileIcon > img{
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.headerAccountDropDown__arrowIcon{
+    color: var(--main-white-color);
+    transition: rotate 0.3s ease !important;
+    -webkit-transition: rotate 0.3s ease !important;
+    -moz-transition: rotate 0.3s ease !important;
+    -ms-transition: rotate 0.3s ease !important;
+    -o-transition: rotate 0.3s ease !important;
+}
+.headerAccountDropDown:hover > .headerAccountDropDown__arrowIcon{
+    rotate: 180deg;
+}

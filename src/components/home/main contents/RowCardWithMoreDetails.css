@@ -1,0 +1,45 @@
+.rowCardWithMoreDetails{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    z-index: 999;
+    overflow: hidden;
+    border-radius: 0.4vw;
+    -webkit-border-radius: 0.4vw;
+    -moz-border-radius: 0.4vw;
+    -ms-border-radius: 0.4vw;
+    -o-border-radius: 0.4vw;
+    background-color: var(--main-background-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+.rowCardWithMoreDetails__image{
+    max-width: 100%;
+}
+.rowCardWithMoreDetails__options{
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    padding: 0.8vw;
+}
+.rowCardWithMoreDetails__genres{
+    display: flex;
+    align-items: center;
+    padding: 0.8vw;
+    color: var(--main-white-color);
+}
+.rowCardWithMoreDetails__genre{
+    display: flex;
+    align-items: center;
+    font-size: 1vw;
+}
+
+.rowCardWithMoreDetails__genre > .MuiSvgIcon-root{
+    margin: 0 0.5vw;
+    font-size: 0.5vw !important;
+    color: rgba(255, 255, 255, 0.233);
+}

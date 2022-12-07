@@ -1,0 +1,95 @@
+.banner{
+    position: relative;
+}
+.banner__image{
+    width: 100%;
+}
+.banner__movieInfo{
+    z-index: 1;
+    position: absolute;
+    left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    top: calc(50% - 7.35vw);
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    width: 36%;
+    height: 100%;
+}
+.banner__gradient{
+    position: absolute;
+    background-color: transparent;
+    background-image: linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#141414 68%,#141414);
+    background-position: 0 top;
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    bottom: 0;
+    height: 14.7vw;
+    opacity: 1;
+    left: 0;
+    width: 100%;
+}
+.banner__movieTitle{
+    font-size: 6vw;
+    color: var(--main-white-color);
+}
+.banner__movieStory{
+    color: var(--main-white-color);
+    font-size: 1.2vw;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+}
+.banner__btns{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+@media (max-width:884px) {
+    .banner__btns{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.banner__btn{
+    height: 3vw;
+    border: none;
+    outline: none;
+    font-size: 1.4vw;
+    font-weight: 600;
+    line-height: 2.4rem;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.banner__btn:hover{
+    opacity: 0.8;
+}
+
+.banner__btn.btn--play{
+    background-color: var(--main-white-color);
+    color: black;
+    width: 9vw;
+}
+.banner__btn.btn--play > .MuiSvgIcon-root{
+    font-size: 2.8vw !important;
+}
+.banner__btn.btn--moreInfo {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: var(--main-white-color);
+    width: 11vw;
+}
+.banner__btn.btn--moreInfo > .MuiSvgIcon-root{
+    font-size: 2.2vw !important;
+}

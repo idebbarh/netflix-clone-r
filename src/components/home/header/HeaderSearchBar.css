@@ -1,0 +1,29 @@
+.headerSearchBar{
+    display: flex;
+    align-items: center;
+}
+.headerSearchBar__searchIcon{
+    color: var(--main-white-color);
+    cursor: pointer;
+    font-size: 1.9rem !important;
+}
+.headerSearchBar__inputContainer{
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.647);
+    border: 1px solid var(--main-white-color);
+    padding: 0 5px;
+    gap: 5px;
+    overflow: hidden;
+}
+.headerSearchBar__input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--main-white-color);
+    height:35px;
+    
+}
+.headerSearchBar__input::placeholder{
+    text-transform: capitalize;
+}
