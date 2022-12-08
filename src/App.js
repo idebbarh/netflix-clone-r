@@ -1,11 +1,15 @@
 import React from 'react';
+import { Navigate, Route, Routes} from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/home/HomePage';
 
 function App() {
   return (
     <div className="app">
-      <HomePage/>
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/browser" />} />
+        <Route path='browser/*' element={<HomePage/>}/>
+      </Routes>
     </div>
   );
 }

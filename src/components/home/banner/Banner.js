@@ -4,7 +4,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import axiosConfig from '../../../axiosConfig'
 import apiEndpoints from '../../../apiEndpoints';
-function truncateMovieStoryString(string,size){
+export function truncateMovieStoryString(string,size){
     return string?.substr(0,size)+'...';
 }
 function Banner() {

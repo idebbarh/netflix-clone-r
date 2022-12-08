@@ -8,7 +8,7 @@ const apiEndpoints = {
     currentPopularMovies:`movie/popular?api_key=${apiKey}&language=en-US&page=1`,
     nowPlayingMovies:`movie/now_playing?api_key=${apiKey}&language=en-US&page=1`,
     upcomingMovies:`movie/upcoming?api_key=${apiKey}&language=en-US&page=1`,
-    imageBaseURL:'https://image.tmdb.org/t/p/original'
+    imageBaseURL:'https://image.tmdb.org/t/p/original',
 }
 
 export default apiEndpoints;

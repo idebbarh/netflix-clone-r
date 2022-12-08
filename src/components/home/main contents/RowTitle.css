@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
 }
-.rowTitle__headerText:hover{
+.rowTitle:hover .rowTitle__headerText{
     color: var(--main-white-color);
 }
 .rowTitle__headerText > .MuiSvgIcon-root{

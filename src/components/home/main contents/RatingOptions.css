@@ -1,0 +1,47 @@
+.ratingOptions{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: rgb(35, 35, 35);
+    padding: 1.2vw 1vw;
+    border-radius: 1vw;
+    -webkit-border-radius: 1vw;
+    -moz-border-radius: 1vw;
+    -ms-border-radius: 1vw;
+    -o-border-radius: 1vw;
+    gap: 0.6vw;
+    box-shadow: rgb(0, 0, 0,60%) 0px 0px 2px 0px , rgb(0, 0, 0,50%) 0px 8px 16px 0px;
+}
+.ratingOptions__icon{
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ratingOptions__icon:hover{
+    background-color: rgba(255, 255, 255, 0.19);
+}
+.ratingOptions__icon > .MuiSvgIcon-root{
+    font-size: 1vw;
+}

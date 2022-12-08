@@ -1,21 +1,22 @@
-.rowCardWithMoreDetailsOption{
-    width: 3vw;
-    height: 3vw;
+.cardOptions{
+    width: 2vw;
+    height: 2vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.558);
+    border: 1px solid rgba(255, 255, 255, 0.558);
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     cursor: pointer;
+    position: relative;
 }
-.rowCardWithMoreDetailsOption:hover{
+.cardOptions:hover{
     border-color: var(--main-white-color);
 }
 
-.rowCardWithMoreDetailsOption > .MuiSvgIcon-root{
-    font-size: 2vw;
+.cardOptions > .MuiSvgIcon-root{
+    font-size: 1vw;
 }

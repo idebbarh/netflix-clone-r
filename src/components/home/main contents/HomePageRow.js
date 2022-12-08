@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import axiosConfig from '../../../axiosConfig';
 import './HomePageRow.css'
 import RowCard from './RowCard';
 import RowTitle from './RowTitle'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-function HomePageRow({rowTitle,apiUrl,isWatchList=false}) {
+function HomePageRow({rowTitle,apiUrl,isWatchList=false,showType}) {
     const [rowData,setRowData] = useState([]);
     const [sliderVal,setSliderVal] = useState(0);
     const [isMouseOnHomePageRow,setIsMouseOnHomePageRow] = useState(false);
     const lastCardRef = React.createRef();
     const isInTheTailOfSlide = useIsInViewport(lastCardRef);
-
+    const sliderRef = useRef();
     useEffect(()=>{
         const fetchData = async ()=>{
             const res = await axiosConfig.get(apiUrl);
@@ -43,15 +43,17 @@ function HomePageRow({rowTitle,apiUrl,isWatchList=false}) {
     }
 
     const cardsElem = rowData.map((item)=>{
-        return item.backdrop_path && <RowCard cardData={item} key={item.id} rowHoverOutHandler={rowHoverOutHandler} rowHoverHandler={rowHoverHandler} ref={lastCardRef}/>
+        return item.backdrop_path && <RowCard cardData={item} key={item.id} ref={lastCardRef} showType={showType}/>
     })
     
   return (
     <div className='homePageRow' onMouseEnter={rowHoverHandler} onMouseLeave={rowHoverOutHandler} > 
         <RowTitle rowTitle={rowTitle}/>
-        <li className='homePageRow__sliderArrow sliderArrow--left' style={{display:`${isMouseOnHomePageRow && sliderVal !== 0 ? 'flex' : 'none'}`}} onClick={moveSliderLeft}><ArrowBackIosNewIcon/></li>
-        <li className='homePageRow__sliderArrow sliderArrow--right'style={{display:`${isMouseOnHomePageRow ? 'flex' : 'none'}`}} onClick={moveSliderRight}><ArrowForwardIosIcon/></li>
-        <div className="homePageRow__row" style={{transform:`translate3d(${sliderVal}%, 0px, 0px)`}}>
+        <div className='homePageRow__sliderArrow sliderArrow--left' style={{display:`${isMouseOnHomePageRow && sliderVal !== 0 ? 'flex' : 'none'}`,height:`${sliderRef.current?.offsetHeight}px`}} onClick={moveSliderLeft}><ArrowBackIosNewIcon/></div>
+        <div className='homePageRow__sliderArrow sliderArrow--right' style={{display:`${isMouseOnHomePageRow ? 'flex' : 'none'}`,height:`${sliderRef.current?.offsetHeight}px`}} onClick={moveSliderRight}><ArrowForwardIosIcon/></div>
+        <div className="homePageRow__darkSide darkSide--left" style={{display:`${sliderVal !== 0 ? 'block' : 'none'}`,height:`${sliderRef.current?.offsetHeight}px`}}></div>
+        <div className="homePageRow__darkSide darkSide--right" style={{display:`${sliderVal !== 0 ? 'block' : 'none'}`,height:`${sliderRef.current?.offsetHeight}px`}}></div>
+        <div className="homePageRow__row" style={{transform:`translate3d(${sliderVal}%, 0px, 0px)`}} ref={sliderRef}>
             {cardsElem}
         </div>
     </div>

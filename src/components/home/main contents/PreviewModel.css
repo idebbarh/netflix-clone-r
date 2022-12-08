@@ -1,0 +1,190 @@
+.focursWrapper{
+    z-index: 9999;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.70);
+    position: fixed;
+    left: 0;
+    overflow-y: scroll;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.previewModel{
+    width: 900px;
+    position: relative;
+    top: 35px;
+    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+    background-color: #181818;
+    border-radius: 0.4rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+    overflow: hidden;
+    height: fit-content;
+    transform-origin: center center;
+}
+.previewModel__closeBtn{
+    background-color: #181818;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    z-index: 1;
+    cursor: pointer;
+    border: 1px solid var(--main-white-color);
+}
+.previewModel__closeBtn > .MuiSvgIcon-root{
+    color: var(--main-white-color);
+}
+.previewModel__image{
+    position: relative;
+}
+.previewModel__image > img{
+    max-width: 100%;
+}
+.previewModel__imageInfo{
+    z-index: 1;
+    position: absolute;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    height: 100%;
+    width: 36%;
+}
+.previewModel__movieTitle{
+    font-size: 5rem;
+    color: var(--main-white-color);
+}
+.previewModel__btns{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.previewModel__btn{
+    height: 3rem;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2.4rem;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 9rem;
+}
+
+.previewModel__btn:hover{
+    opacity: 0.9;
+}
+.previewModel__btn.btn--play{
+    background-color: var(--main-white-color);
+    color: black;
+}
+
+.previewModel__btn.btn--play > .MuiSvgIcon-root{
+    font-size: 2.8rem !important;
+}
+.previewModel__mainInfo{
+    padding: 0 30px;
+    margin-top: 15px;
+    display: flex;
+    column-gap: 2rem;
+}
+.previewModel__mainInfoLeft{
+    flex: 0.7;
+}
+.previewModel__story{
+    font-size: 16px;
+    color: var(--main-white-color);
+    line-height: 24px;
+}
+.previewModel__mainInfoRight{
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.4rem;
+}
+.previewModel__detailTag {
+    flex: 1;
+}
+.previewModel__detailTag > ul{
+   display: flex;
+    color: #ddd;
+    flex-wrap: wrap;
+}
+.previewModel__detailTag > ul > span{
+    color: #777;
+    margin-right:  5px;
+    text-transform: capitalize;
+}
+.previewModel__detailTag > ul > li{
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.previewModel__detailTag > ul > li:hover{
+    text-decoration: underline;
+}
+.previewModel__moreLikeThisSection{
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+.previewModel__sectionHead{
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 48px;
+    color: var(--main-white-color);
+    text-transform: capitalize;
+}
+.previewModel__moreLikeThisGridContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 0.8rem;
+}
+.previewModel .cardOptions{
+    height: 42px !important;
+    width: 42px !important;
+    background-color: rgba(42,42,42,.6) !important;
+}
+.previewModel .cardOptions > .ratingOptions{
+    padding: 1.4rem 1rem;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    gap: 0.6rem;
+}
+.previewModel .cardOptions > .ratingOptions .ratingOptions__icon{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.previewModel .cardOptions .MuiSvgIcon-root{
+    font-size: 1.5rem !important;
+}

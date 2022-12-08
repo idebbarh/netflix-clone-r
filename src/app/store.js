@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counterSlice';
+import rowCardWithMoreDetailsReducer from '../features/rowCardWithMoreDetailsSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    rowCardWithMoreDetails: rowCardWithMoreDetailsReducer,
   },
 });

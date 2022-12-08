@@ -1,33 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import apiEndpoints from '../../../apiEndpoints'
 import './RowCardWithMoreDetails.css'
-import RowCardWithMoreDetailsOption from './RowCardWithMoreDetailsOption';
+import CardOptions from './CardOptions';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {motion} from 'framer-motion'
-function RowCardWithMoreDetails({cardData,genresList}) {
+import { closeRowCardWithMoreDetails, selectRowCardWithMoreDetails } from '../../../features/rowCardWithMoreDetailsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+function RowCardWithMoreDetails({genresList}) {
+    const {data:cardData,top,left,width,showType} = useSelector(selectRowCardWithMoreDetails);
+    const [scrollYVal,setScrollYVal] = useState(0);
+    useEffect(()=>{
+        setScrollYVal(window.scrollY);
+    },[])
+    const dispatch = useDispatch();
   return (
     <motion.div className='rowCardWithMoreDetails'
-                initial={{ opacity: 0,width: '100%',height: '200%',top:0}}
-                animate={{ opacity: 1,width: '150%',height: '250%',top: '-70%'}}
-                exit={{width: '100%',height: '200%',top:0}}
+                initial={{ opacity: 0 ,scaleX:1,scaleY:1}}
+                animate={{ opacity: 1,scaleX:1.5,scaleY:1.5}}
+                exit={{scaleX:1,scaleY:1}}
                 transition={{ duration: 0.3 }}
+                style={{top:`${top+scrollYVal}px`,left:`${left}px`,width:`${width}px`}}
+                onMouseLeave={()=>dispatch(closeRowCardWithMoreDetails())}
     >
         <img src={`${apiEndpoints.imageBaseURL}${cardData.backdrop_path}`} alt={cardData.name} className='rowCardWithMoreDetails__image'/>
         <div className="rowCardWithMoreDetails__options">
-            <RowCardWithMoreDetailsOption Icon={PlayArrowIcon} isPlay={true}/>
-            <RowCardWithMoreDetailsOption Icon={AddIcon} isAddToMyList={true}/>
-            <RowCardWithMoreDetailsOption Icon={ThumbUpOffAltIcon}  isRating={true}/>
-            <RowCardWithMoreDetailsOption Icon={ExpandMoreIcon}  isMoreInfo={true}/>
+            <CardOptions Icon={PlayArrowIcon} isPlay={true}/>
+            <CardOptions Icon={AddIcon} isAddToMyList={true}/>
+            <CardOptions Icon={ThumbUpOffAltIcon}  isRating={true}/>
+            <CardOptions Icon={ExpandMoreIcon}  isMoreInfo={true} data={cardData} showType={showType}/>
         </div>
         <div className="rowCardWithMoreDetails__genres">
             {genresList.filter(genre=>{
                 return cardData.genre_ids.includes(genre.id);
             }).splice(0,3).map((genre,index,arr)=>{
-                return <span key={genre.id} className='rowCardWithMoreDetails__genre'>{genre.name}{index < arr.length-1 && <FiberManualRecordIcon/>}</span>
+                return <span key={genre.id} className='rowCardWithMoreDetails__genre'>{index !== 0 && <FiberManualRecordIcon/>}{genre.name}</span>
             })}
         </div>
     </motion.div>

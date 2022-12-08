@@ -1,7 +1,7 @@
 .homePageRow{
     padding: 0 70px;
     position: relative;
-    margin: 8vw 0;
+    margin: 3vw 0;
 }
 .homePageRow__row{
     position: relative;
@@ -25,7 +25,6 @@
     color: var(--second-white-color);
     cursor: pointer;
     z-index: 2;
-    height: 72%;
     width: 70px;
     background-color: rgba(0, 0, 0, 0.394);
     align-items: center;
@@ -57,6 +56,24 @@
     border-bottom-right-radius:0.2vw;
 }
 .homePageRow__sliderArrow.sliderArrow--right{
+    right: 0;
+    border-top-left-radius:0.2vw;
+    border-bottom-left-radius:0.2vw;
+}
+.homePageRow__darkSide{
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 70px;
+    background-color: rgba(0, 0, 0, 0.394);
+}
+.homePageRow__darkSide.darkSide--left{
+    left: 0;
+    width: calc(70px - 0.5vw);
+    border-top-right-radius:0.2vw;
+    border-bottom-right-radius:0.2vw;
+}
+.homePageRow__darkSide.darkSide--right{
     right: 0;
     border-top-left-radius:0.2vw;
     border-bottom-left-radius:0.2vw;
