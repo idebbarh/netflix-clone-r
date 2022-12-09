@@ -1,0 +1,10 @@
+.searchSection{
+    position: relative;
+    padding: 140px 70px;
+}
+.searchSection__cardsContainer{
+    display: flex;
+    column-gap: 0.5vw;
+    row-gap: 3vw;
+    flex-wrap: wrap;
+}

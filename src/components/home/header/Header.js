@@ -4,6 +4,7 @@ import './Header.css'
 import HeaderSearchBar from './HeaderSearchBar';
 import HeaderAccountDropDown from './HeaderAccountDropDown';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import netflixLogo from '../../../assets/images/Netflix_logo.png'
 function Header() {
     const [scrollPosIsZero,setScrollPosIsZero] = useState(true);
     const [navigationLinksHovered,setNavigationLinksHovered] = useState(false);
@@ -24,7 +25,7 @@ function Header() {
     <div className='header' style={headerStyle}>
         <div className="header__left">
             <div className="header__logo">
-                <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="netflix logo" />
+                <img src={netflixLogo} alt="netflix logo" />
             </div>
            <span className='header__menuTrigger' onClick={()=>setNavigationLinksHovered(prevState=>!prevState)}>browse<ArrowDropDownIcon className='header__arrowIcon'/></span>
             <ul className="header__navigationLinks" style={navigationLinksHovered ? {display:'flex'} : {}}>

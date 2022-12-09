@@ -1,0 +1,177 @@
+.getStartedPage{
+    position: relative;
+    background-color: #000;
+}
+.getStartedPage__header{
+    background-color: transparent;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    padding: 20px 70px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 1;
+}
+.getStartedPage__logo > img{
+    height: 2.5vw;
+    min-height: 2rem;
+}
+.getStartedPage__background{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+}
+.getStartedPage__background > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.getStartedPage__gradient{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.4);
+    background-image: linear-gradient(0deg,rgba(0,0,0,.8) 0,transparent 60%,rgba(0,0,0,.8));
+}
+.getStartedPage__signInBtn{
+    color: var(--main-white-color);
+    background-color: var(--netflix-red-color);
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 7px 17px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.getStartedPage__text{
+    width: fit-content;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    color: var(--main-white-color);
+    text-align: center;
+    width: 900px;
+    max-width: 100%;
+    padding: 0 15px;
+}
+@media (max-width:1200px) {
+    .getStartedPage__text{
+        width: 800px;
+    }
+}
+@media (max-width:950px) {
+    .getStartedPage__text{
+        width: 600px;
+    }
+}
+.getStatedPage__title{
+    font-size: 4rem;
+    font-weight: bold;
+}
+@media (max-width:1200px) {
+    .getStatedPage__title{
+        font-size: 3rem;
+        font-weight: bold;
+    }
+}
+.getStatedPage__subTitle{
+    padding: 20px 0;
+    font-weight: normal;
+    font-size: 1.8rem;
+}
+.getStartedPage__formTitle{
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+.getStartedPage__formLockup{
+    display: flex;
+    padding: 0 70px;
+}
+@media (max-width:950px) {
+    .getStartedPage__formLockup{
+        flex-direction: column;
+        row-gap: 20px;
+        
+    }
+}
+.getStartedPage__emailInputContainer{
+    background-color: var(--main-white-color);
+    min-height: 70px;
+    flex: 0.7;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.getStartedPage__submitBtn{
+    flex: 0.3;
+    background-color: var(--netflix-red-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--main-white-color);
+    width: fit-content;
+    margin: 0 auto;
+}
+@media (max-width:950px) {
+    .getStartedPage__submitBtn{
+        font-size: 1.4rem;
+        padding: 7px 17px;
+        border-radius: 4px;
+    }
+}
+.getStartedPage__submitBtn:hover{
+    filter: brightness(1.5);
+    -webkit-filter: brightness(1.5);
+}
+.getStartedPage__Emailinput{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding:  10px 20px;
+}
+
+.getStartedPage__emailInputPlaceHolder{
+    font-weight: bold;
+    color: #8c8c8c;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transition: font-size .1s ease,top .1s ease;
+    -webkit-transition: font-size .1s ease,top .1s ease;
+    -moz-transition: font-size .1s ease,top .1s ease;
+    -ms-transition: font-size .1s ease,top .1s ease;
+    -o-transition: font-size .1s ease,top .1s ease;
+}
+.getStartedPage__Emailinput:focus + .getStartedPage__emailInputPlaceHolder{
+    top: 15px;
+    font-size: 0.7rem;
+}

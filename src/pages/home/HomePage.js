@@ -11,11 +11,13 @@ import axiosConfig from '../../axiosConfig'
 import {AnimatePresence} from 'framer-motion'
 import PreviewModel from '../../components/home/main contents/PreviewModel'
 import { Route, Routes} from 'react-router-dom'
+import { selectHomePageSearchBarValue } from '../../features/homePageSearchBarValueSlice'
+import SearchSection from '../../components/home/search/SearchSection'
 
 function HomePage() {
   const rowCardWithMoreDetailsValue = useSelector(selectRowCardWithMoreDetails);
   const [genresList,setGenresList] = useState([]);
-  
+  const homePageSearchBarValue = useSelector(selectHomePageSearchBarValue);
   useEffect(()=>{
     const fetchData = async ()=>{
         const res = await axiosConfig.get(apiEndpoints.tvShowGenresList);
@@ -27,15 +29,19 @@ function HomePage() {
   return (
     <div className='homePage'>
       <Header/>
-      <Banner/>
-      <div className="homePage__mainContents">
-          <HomePageRow rowTitle='top rated tv shows' apiUrl={apiEndpoints.topRatedTvShows} showType='tvshow'/>
-          <HomePageRow rowTitle='top rated movies' apiUrl={apiEndpoints.topRatedMovies} showType='movie'/>
-          <HomePageRow rowTitle='current popular movies' apiUrl={apiEndpoints.currentPopularMovies} showType='movie'/>
-          <HomePageRow rowTitle='current popular tv shows' apiUrl={apiEndpoints.popularTvShows} showType='tvshow'/>
-          <HomePageRow rowTitle='now playing movies' apiUrl={apiEndpoints.nowPlayingMovies} showType='movie'/>
-          <HomePageRow rowTitle='upcoming movies' apiUrl={apiEndpoints.upcomingMovies} showType='movie'/>
-      </div>
+      <AnimatePresence mode='wait'>{homePageSearchBarValue.length > 0 ? 
+      <SearchSection key='searchSection'/> : 
+      <>
+        <Banner/>
+        <div className="homePage__mainContents">
+            <HomePageRow rowTitle='top rated tv shows' apiUrl={apiEndpoints.topRatedTvShows} showType='tvshow'/>
+            <HomePageRow rowTitle='top rated movies' apiUrl={apiEndpoints.topRatedMovies} showType='movie'/>
+            <HomePageRow rowTitle='current popular movies' apiUrl={apiEndpoints.currentPopularMovies} showType='movie'/>
+            <HomePageRow rowTitle='current popular tv shows' apiUrl={apiEndpoints.popularTvShows} showType='tvshow'/>
+            <HomePageRow rowTitle='now playing movies' apiUrl={apiEndpoints.nowPlayingMovies} showType='movie'/>
+            <HomePageRow rowTitle='upcoming movies' apiUrl={apiEndpoints.upcomingMovies} showType='movie'/>
+        </div>
+      </>}</AnimatePresence>
         <AnimatePresence mode='wait'>{rowCardWithMoreDetailsValue.isOpen && <RowCardWithMoreDetails key='rowCardWithMoreDetails' genresList={genresList}/>}</AnimatePresence>
         <Routes>
           <Route path='title/:showType/:id' element={<AnimatePresence mode='await'><PreviewModel genresList={genresList}/></AnimatePresence>}/>

@@ -3,15 +3,18 @@ import './HeaderSearchBar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import {motion,AnimatePresence} from 'framer-motion'
+import { selectHomePageSearchBarValue, setHomePageSearchBarValue } from '../../../features/homePageSearchBarValueSlice';
+import { useDispatch, useSelector } from 'react-redux';
 function HeaderSearchBar() {
     const [isSearchInputOpen,setIsSearchInputOpen] = useState(false);
-    const [searchInputValue,setSearchInputValue] = useState('');
+    const homePageSearchBarValue = useSelector(selectHomePageSearchBarValue);
+    const dispatch = useDispatch();
 
     const searchInputValueUpdater = (e)=>{
-      setSearchInputValue(e.target.value)
+      dispatch(setHomePageSearchBarValue(e.target.value))
     }
     const closeSearchInput = ()=>{
-      setSearchInputValue('')
+      dispatch(setHomePageSearchBarValue(''))
       setIsSearchInputOpen(false);
     }
   return (
@@ -25,7 +28,7 @@ function HeaderSearchBar() {
                       transition={{ duration: 0.3 }}
                       >
                       <SearchIcon className='headerSearchBar__searchIcon'/>
-                      <input type="text" className='headerSearchBar__input' placeholder='title, people, genres' value={searchInputValue} onChange={(e)=>searchInputValueUpdater(e)}/>
+                      <input type="text" className='headerSearchBar__input' placeholder='title, people, genres' value={homePageSearchBarValue} onChange={(e)=>searchInputValueUpdater(e)}/>
                       <CloseIcon className="headerSearchBar__searchIcon" onClick={closeSearchInput}/>
               </motion.div> 
           </AnimatePresence> : 

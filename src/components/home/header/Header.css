@@ -37,7 +37,7 @@
     }
 }
 .header__logo > img{
-    height: 65px;
+    height: 25px;
 }
 @media (max-width:950px) {
     .header__logo > img{
