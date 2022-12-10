@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import netflixLogo from '../../assets/images/Netflix_logo.png';
 import './GetStartedPage.css'
 import getStartedPageBackgroundImage from '../../assets/images/login_page_background.jpg'
+import { useNavigate } from 'react-router-dom';
 function GetStartedPage() {
-    const [emailInputValue,setEmailInputValue] = useState('')
+    const [emailInputValue,setEmailInputValue] = useState('');
+    const navigate = useNavigate();
   return (
     <div className='getStartedPage'>
         <div className="getStartedPage__header">
             <div className="getStartedPage__logo">
                 <img src={netflixLogo} alt="netflix logo" />
             </div>
-            <button className="getStartedPage__signInBtn">sign in</button>
+            <button className="getStartedPage__signInBtn" onClick={()=>navigate('/login')}>sign in</button>
         </div>
         <div className="getStartedPage__background">
             <img src={getStartedPageBackgroundImage} alt="get started page background" />
