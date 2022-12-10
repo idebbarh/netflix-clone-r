@@ -1,0 +1,79 @@
+.signupPage{
+    height: 100vh;
+    background-color: var(--main-white-color);
+    position: relative;
+}
+
+.signupPage__header{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 5px 70px;
+}
+.signupPage__logo{
+    cursor: pointer;
+}
+.signupPage__logo > img{
+    height: 3rem;
+}
+.signupPage__headerAuthLink{
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.signupPage__headerAuthLink:hover{
+    text-decoration: underline;
+}
+.signupPage__signupBody{
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    max-width: 100%;
+    padding :20px 3% 60px;
+}
+.signupPage__form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    color: #333;
+}
+.signupPage__formSubTitle{
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+.signupPage__input{
+    padding: 20px 10px;
+    background-color: transparent;
+    border: 1px solid #333;
+    outline: none;
+    font-size: 1rem;
+}
+.signup__nextBtn{
+    padding: 20px 5px;
+    background-color: var(--netflix-red-color);
+    color: var(--main-white-color);
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.signup__nextBtn:hover{
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}

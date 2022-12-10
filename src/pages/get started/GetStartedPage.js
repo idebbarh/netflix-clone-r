@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom';
 function GetStartedPage() {
     const [emailInputValue,setEmailInputValue] = useState('');
     const navigate = useNavigate();
+    const submitHandler = (e)=>{
+        e.preventDefault();
+        localStorage.setItem('signupEmailValue',JSON.stringify(emailInputValue));
+        navigate('/signup');
+    }
   return (
     <div className='getStartedPage'>
         <div className="getStartedPage__header">
@@ -22,7 +27,7 @@ function GetStartedPage() {
         <div className="getStartedPage__text">
           <h1 className="getStatedPage__title">Unlimited movies, TV shows, and more.</h1>
           <h2 className="getStatedPage__subTitle">Watch anywhere. Cancel anytime.</h2>
-          <form className="getStartedPage__form">
+          <form className="getStartedPage__form" onSubmit={(e)=>submitHandler(e)}>
               <h3 className='getStartedPage__formTitle'>Ready to watch? Enter your email to create or restart your membership.</h3>
               <div className="getStartedPage__formLockup">
                 <div className="getStartedPage__emailInputContainer">
