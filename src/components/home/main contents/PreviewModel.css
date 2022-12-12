@@ -69,7 +69,7 @@
     width: 50%;
 }
 .previewModel__movieTitle{
-    font-size: 5rem;
+    font-size: calc(2rem + 3vw);
     color: var(--main-white-color);
 }
 .previewModel__btns{
@@ -78,10 +78,10 @@
     gap: 5px;
 }
 .previewModel__btn{
-    height: 3rem;
+    height: 3vw;
     border: none;
     outline: none;
-    font-size: 1.4rem;
+    font-size: 1.4vw;
     font-weight: 600;
     line-height: 2.4rem;
     border-radius: 4px;
@@ -94,7 +94,7 @@
     justify-content: center;
     gap: 5px;
     cursor: pointer;
-    width: 9rem;
+    width: 9vw;
 }
 
 .previewModel__btn:hover{
@@ -106,7 +106,7 @@
 }
 
 .previewModel__btn.btn--play > .MuiSvgIcon-root{
-    font-size: 2.8rem !important;
+    font-size: 2.5vw !important;
 }
 .previewModel__mainInfo{
     padding: 0 30px;
@@ -118,18 +118,15 @@
     flex: 0.7;
 }
 .previewModel__story{
-    font-size: 16px;
+    font-size: calc(0.4rem + 0.8vw);
     color: var(--main-white-color);
-    line-height: 24px;
+    line-height: 28px;
 }
 .previewModel__mainInfoRight{
     flex: 0.3;
     display: flex;
     flex-direction: column;
     row-gap: 0.4rem;
-}
-.previewModel__detailTag {
-    flex: 1;
 }
 .previewModel__detailTag > ul{
    display: flex;

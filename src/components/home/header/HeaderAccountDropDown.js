@@ -1,32 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import './HeaderAccountDropDown.css'
-import { signOut } from 'firebase/auth';
-import { auth, db } from '../../../firebase';
-import { useNavigate } from 'react-router-dom';
-import { doc, updateDoc } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../features/userSlice';
+import HeaderProfileIcon from './HeaderProfileIcon';
+import HeaderAccountMenu from './HeaderAccountMenu';
 function HeaderAccountDropDown() {
-  const navigate = useNavigate();
   const user = useSelector(selectUser);
-  const signOutHandler = async ()=>{
-        try{
-          const userRef = doc(db,'users',user.userEmail);
-          await updateDoc(userRef,{userActiveProfile:null});
-          await signOut(auth);
-          navigate('/');
-        }catch(e){
-          alert(e.message);
-        }
+  const [isMenuOpen,setIsMenuOpen] = useState(false);
+  const [mouseEnterTimeout,setMouseEnterTimeout] = useState(null);
+  const mouseEnterHandler = ()=>{
+    if(mouseEnterTimeout){
+      clearTimeout(mouseEnterTimeout);
     }
-  
+    setIsMenuOpen(true);
+  }
+  const mouseLeaveHandler = ()=>{
+    setMouseEnterTimeout(setTimeout(()=>{
+      setIsMenuOpen(false);
+    },400))
+  }
   return (
-    <div className='headerAccountDropDown' onClick={signOutHandler}>
-        <div className="headerAccountDropDown__profileIcon">
-            <img src={user.userActiveProfile?.profileIconUrl} alt="Profile Icon" />
-        </div>
+    <div className='headerAccountDropDown' onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
+        <HeaderProfileIcon Icon={user.userActiveProfile?.profileIconUrl}/>
         <ArrowDropDownIcon className='headerAccountDropDown__arrowIcon'/>
+        {isMenuOpen && <HeaderAccountMenu/>}
     </div>
   )
 }

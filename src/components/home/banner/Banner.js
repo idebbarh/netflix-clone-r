@@ -9,7 +9,7 @@ export function truncateMovieStoryString(string,size){
     return string?.substr(0,size)+'...';
 }
 function Banner() {
-    const [data,setData] = useState([]);
+    const [data,setData] = useState(null);
     const navigate = useNavigate();
     useEffect(()=>{
         const fetchData = async ()=>{
@@ -24,7 +24,7 @@ function Banner() {
         navigate(`title/${'tvshow'}/${data.id}`)
       }
   return (
-    <div className='banner'>
+    <div className='banner' style={!data ? {height:'100vh'} : {}} >
         <img src={`${apiEndpoints.imageBaseURL}/${data?.backdrop_path}`} alt={data?.name} className='banner__image'/>
         <div className="banner__movieInfo">
             <h1 className="banner__movieTitle">{data?.name}</h1>

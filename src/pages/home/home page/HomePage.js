@@ -10,14 +10,17 @@ import RowCardWithMoreDetails from "../../../components/home/main contents/RowCa
 import axiosConfig from "../../../axiosConfig";
 import { AnimatePresence } from "framer-motion";
 import PreviewModel from "../../../components/home/main contents/PreviewModel";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { selectHomePageSearchBarValue } from "../../../features/homePageSearchBarValueSlice";
 import SearchSection from "../../../components/home/search/SearchSection";
+import { selectUser } from "../../../features/userSlice";
+import Profiles from "../profiles/Profiles";
 
 function HomePage() {
   const rowCardWithMoreDetailsValue = useSelector(selectRowCardWithMoreDetails);
   const [genresList, setGenresList] = useState([]);
   const homePageSearchBarValue = useSelector(selectHomePageSearchBarValue);
+  const user = useSelector(selectUser);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axiosConfig.get(apiEndpoints.tvShowGenresList);
@@ -27,6 +30,8 @@ function HomePage() {
   }, []);
 
   return (
+    user.isLogin ?
+    (user?.userActiveProfile ? 
     <div className="homePage">
       <Header />
       <AnimatePresence mode="wait">
@@ -89,6 +94,8 @@ function HomePage() {
         />
       </Routes>
     </div>
+    : <Profiles/>)
+    : <Navigate replace to="/login" /> 
   );
 }
 

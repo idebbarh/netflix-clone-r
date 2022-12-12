@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/home/home page/HomePage";
@@ -7,11 +7,13 @@ import { selectUser, setUser, removeUser } from "./features/userSlice";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import AuthPages from "./pages/auth pages/AuthPages";
-import Profiles from "./pages/home/profiles/Profiles";
+import LoginPage from "./pages/login/LoginPage";
+import GetStartedPage from "./pages/get started/GetStartedPage";
+import SignupPage from "./pages/signup/SignupPage";
+
 function App() {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const getUserDataFromDataBase = async (email) => {
     const docRef = doc(db, "users", email);
     const docSnap = await getDoc(docRef);
@@ -21,24 +23,24 @@ function App() {
   };
   
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         getUserDataFromDataBase(user.email);
       } else {
         dispatch(removeUser());
       }
     });
+    
   }, []);
   return (
     <div className="app">
-      {user !== null ? (
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/browser" />} />
-          <Route path="browser/*" element={user.userActiveProfile ? <HomePage /> : <Profiles/>} />
-        </Routes>
-      ) : (
-        <AuthPages />
-      )}
+      {user && 
+      <Routes>
+          <Route path="/" element={<GetStartedPage />} />
+          <Route path="browser/*" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup/*" element={<SignupPage />} />
+      </Routes>}
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.headerAccountMenu{
+    position: absolute;
+    top: calc(100% + 20px);
+    width: 250px;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.90);
+    right: 0;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

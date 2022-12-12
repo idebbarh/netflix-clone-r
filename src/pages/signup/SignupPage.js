@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './SignupPage.css'
 import netflixLogo from '../../assets/images/Netflix_logo.png';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth, db} from '../../firebase'
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 function SignupPage() {
     const [formData,setFormData] = useState({signupEmailInput:'',signupPassInput:''});
     const navigate = useNavigate();
+    const user = useSelector(selectUser);
     useEffect(()=>{
         const signupEmailValue = localStorage.getItem('signupEmailValue');
         if(signupEmailValue){
@@ -20,6 +23,7 @@ function SignupPage() {
                 userEmail:user.email,
                 userProfiles:[],
                 userActiveProfile:null,
+                isLogin:true,
               });
           } catch (e) {
             alert(e.message);
@@ -31,13 +35,15 @@ function SignupPage() {
         .then((userCredential) => {
             const user = userCredential.user;
             addUserToDb(user);
-            navigate('/browser');
         })
         .catch((error) => {
             alert(error.message);
         });
     }
   return (
+    user.isLogin ?
+    <Navigate replace to="/browser" /> 
+    :
     <div className='signupPage'>
         <div className="signupPage__header">
             <div className="signupPage__logo" onClick={()=>navigate('/')}>

@@ -15,7 +15,7 @@ export const userSlice = createSlice({
       state.value = action.payload;
     },
     removeUser: (state) => {
-      state.value = null;
+      state.value = {isLogin:false};
     },
   },
 });

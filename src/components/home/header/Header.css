@@ -41,7 +41,7 @@
 }
 @media (max-width:950px) {
     .header__logo > img{
-        height: 40px;
+        height: 15px;
     }
 }
 .header__menuTrigger{

@@ -1,0 +1,19 @@
+.headerAccountMenuOptions{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 8px 15px;
+}
+.headerAccountMenuOptions__title{
+    color: var(--main-white-color);
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.headerAccountMenuOptions:hover .headerAccountMenuOptions__title{
+    text-decoration: underline;
+}
+.headerAccountMenuOptions > .MuiSvgIcon-root{
+    color: gray;
+}

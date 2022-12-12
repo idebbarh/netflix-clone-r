@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import './LoginPage.css'
 import netflixLogo from '../../assets/images/Netflix_logo.png';
 import loginPageBackgroundImage from '../../assets/images/login_page_background.jpg'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 function LoginPage() {
     const [formData,setFormData] = useState({loginEmailInput:'',loginPassInput:''});
     const navigate = useNavigate();
-
+    const user = useSelector(selectUser);
     const handleSubmit = (e)=>{
         e.preventDefault();
         signInWithEmailAndPassword(auth, formData.loginEmailInput, formData.loginPassInput)
-            .then(()=>{
-                navigate('/browser')
-            })
             .catch((error) => {
                 alert(error.message)
             });
     }
   return (
+    user.isLogin ?
+    <Navigate replace to="/browser" /> 
+    :
     <div className='loginPage'>
-
         <div className="loginPage__header">
             <div className="loginPage__logo" onClick={()=>navigate('/')}>
                 <img src={netflixLogo} alt="netflix logo" />

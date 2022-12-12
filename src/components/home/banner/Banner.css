@@ -11,8 +11,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    top: calc(50% - 7.35vw);
+    gap: 3vw;
+    top: 50%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -20,6 +20,11 @@
     -o-transform: translateY(-50%);
     width: 36%;
     height: 100%;
+}
+@media (max-width:950px) {
+    .banner__movieInfo{
+        width: 100%;
+    }
 }
 .banner__gradient{
     position: absolute;
@@ -44,10 +49,15 @@
     font-weight: 400;
     text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
 }
+@media (max-width:950px) {
+    .banner__movieStory{
+        width: 50%;
+    }
+}
 .banner__btns{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 1.5vw;
 }
 @media (max-width:884px) {
     .banner__btns{
