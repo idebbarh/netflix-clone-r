@@ -24,7 +24,7 @@ function HeaderAccountDropDown() {
     <div className='headerAccountDropDown' onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
         <HeaderProfileIcon Icon={user.userActiveProfile?.profileIconUrl}/>
         <ArrowDropDownIcon className='headerAccountDropDown__arrowIcon'/>
-        {isMenuOpen && <HeaderAccountMenu/>}
+        {isMenuOpen && <HeaderAccountMenu setIsMenuOpen={setIsMenuOpen}/>}
     </div>
   )
 }

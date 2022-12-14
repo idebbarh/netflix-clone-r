@@ -23,7 +23,11 @@ function AddProfile({setIsAddProfileOpen}) {
         }
     }
     const addNewProfileHandler = async ()=>{
-        if(profileEntryData.profileTitle.length > 0){
+        const profileNames = [];
+        for(let profile of user.userProfiles){
+            profileNames.push(profile.profileTitle)
+        } 
+        if(profileEntryData.profileTitle.length > 0 && !profileNames.includes(profileEntryData.profileTitle)){
             await addProfileToDb();
             setIsAddProfileOpen(false);
         }

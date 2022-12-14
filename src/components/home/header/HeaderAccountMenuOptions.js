@@ -7,7 +7,7 @@ import { selectUser, setUser } from '../../../features/userSlice';
 import { auth, db } from '../../../firebase';
 import './HeaderAccountMenuOptions.css'
 import HeaderProfileIcon from './HeaderProfileIcon'
-function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null}) {
+function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null,setIsMenuOpen}) {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -43,6 +43,7 @@ function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=
     const onClickHandler = ()=>{
         if(isProfile){
             setActiveProfileHandler(profile);
+            setIsMenuOpen();
         }else if(isExitProfile){
             exitActiveProfileHandler();
         }else{

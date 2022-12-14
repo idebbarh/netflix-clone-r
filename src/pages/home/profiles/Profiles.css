@@ -34,15 +34,27 @@
     letter-spacing: 2px;
     margin-top: 4vw;
     height: 3vw;
-    min-height: 2rem;
+    min-height: 3rem;
     padding: 0 4vw;
     transition: all 0.1s ease;
     -webkit-transition: all 0.1s ease;
     -moz-transition: all 0.1s ease;
     -ms-transition: all 0.1s ease;
     -o-transition: all 0.1s ease;
+    text-transform: capitalize;
 }
 .profiles__manageProfilesBtn:hover{
     color: var(--main-white-color);
     border-color: var(--main-white-color);
+}
+.profiles__manageProfilesBtn.profiles__manageProfilesBtn--done{
+    color: black;
+    background-color: var(--main-white-color);
+    border: none;
+    font-weight: bold; 
+}
+
+.profiles__manageProfilesBtn.profiles__manageProfilesBtn--done:hover{
+    background-color: var(--netflix-red-color);
+    color: var(--main-white-color);
 }

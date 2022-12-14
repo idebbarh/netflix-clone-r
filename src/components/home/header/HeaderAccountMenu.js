@@ -9,7 +9,7 @@ import MoveDownIcon from '@mui/icons-material/MoveDown';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
-function HeaderAccountMenu() {
+function HeaderAccountMenu({setIsMenuOpen}) {
    
     const user = useSelector(selectUser);
 
@@ -17,7 +17,7 @@ function HeaderAccountMenu() {
   return (
     <div className='headerAccountMenu'>
        {user?.userProfiles?.filter(profile=>profile?.profileTitle!==user?.userActiveProfile?.profileTitle).map((profile,index)=>{
-            return <HeaderAccountMenuOptions Icon={profile.profileIconUrl} title={profile.profileTitle} isProfile={true} key={index} profile={profile}/>;
+            return <HeaderAccountMenuOptions Icon={profile.profileIconUrl} title={profile.profileTitle} isProfile={true} key={index} profile={profile} setIsMenuOpen={setIsMenuOpen}/>;
        })}  
        <HeaderAccountMenuOptions Icon={EditIcon} title='manage profiles' />
        <HeaderAccountMenuOptions Icon={ExitToAppIcon} title='exit profile' isExitProfile={true}/>
