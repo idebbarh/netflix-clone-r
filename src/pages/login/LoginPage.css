@@ -1,5 +1,5 @@
 .loginPage{
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
 }
 .loginPage__header{
@@ -66,7 +66,7 @@
 @media (max-width:740px) {
     .loginPage__loginBody{
         width: 100%;
-        height: calc(100% - 80px);;
+        height: calc(100vh - 80px);;
         background-color: rgb(0, 0, 0);
         padding: 0 5%;
     }
