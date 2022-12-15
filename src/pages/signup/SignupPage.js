@@ -24,6 +24,7 @@ function SignupPage() {
                 userProfiles:[],
                 userActiveProfile:null,
                 isLogin:true,
+                userFavList:[],
               });
           } catch (e) {
             alert(e.message);

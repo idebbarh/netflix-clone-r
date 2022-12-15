@@ -4,7 +4,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosConfig from '../../../axiosConfig';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeRowCardWithMoreDetails } from '../../../features/rowCardWithMoreDetailsSlice';
 import apiEndpoints from '../../../apiEndpoints';
 import MoreLikeThisCard from './MoreLikeThisCard';
@@ -12,6 +12,8 @@ import CardOptions from './CardOptions';
 import AddIcon from '@mui/icons-material/Add';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import CloseIcon from '@mui/icons-material/Close';
+import { selectUser } from '../../../features/userSlice';
+import CheckIcon from '@mui/icons-material/Check';
 function PreviewModel({genresList}) {
     const navigate = useNavigate();
     const {showType,id} = useParams();
@@ -19,6 +21,7 @@ function PreviewModel({genresList}) {
     const [similarData,setSimilarData] = useState([]);
     const apiKey = process.env.REACT_APP_API_KEY;
     const dispatch = useDispatch();
+    const user = useSelector(selectUser);
     useEffect(()=>{
         document.body.style.overflow = 'hidden';
         const fetchData = async ()=>{
@@ -39,7 +42,7 @@ function PreviewModel({genresList}) {
         }
     }
     const similarCardsElem = similarData.map(data=>{
-        return  data.backdrop_path && <MoreLikeThisCard cardData={data} key={data.id}/>
+        return  data.backdrop_path && <MoreLikeThisCard showType={showType} cardData={data} key={data.id}/>
     })
   return (
     <div className="focursWrapper" onClick={(e)=> removeModelFromScreen(e)}>
@@ -53,7 +56,7 @@ function PreviewModel({genresList}) {
                     <h1 className="previewModel__movieTitle">{cardData?.title ? cardData?.title : cardData?.name}</h1>
                     <div className="previewModel__btns">
                         <button className="previewModel__btn btn--play"><PlayArrowIcon/>play</button>
-                        <CardOptions Icon={AddIcon} isAddToMyList={true}/>
+                        <CardOptions Icon={user?.userFavList?.map(fav=>fav.id).includes(cardData?.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userFavList?.map(fav=>fav.id).includes(cardData?.id) ? true : false}/>
                         <CardOptions Icon={ThumbUpOffAltIcon}  isRating={true}/>
                     </div>
                 </div>

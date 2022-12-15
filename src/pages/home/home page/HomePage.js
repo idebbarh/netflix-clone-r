@@ -4,7 +4,7 @@ import Header from "../../../components/home/header/Header";
 import HomePageRow from "../../../components/home/main contents/HomePageRow";
 import "./HomePage.css";
 import apiEndpoints from "../../../apiEndpoints";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRowCardWithMoreDetails } from "../../../features/rowCardWithMoreDetailsSlice";
 import RowCardWithMoreDetails from "../../../components/home/main contents/RowCardWithMoreDetails";
 import axiosConfig from "../../../axiosConfig";
@@ -13,23 +13,29 @@ import PreviewModel from "../../../components/home/main contents/PreviewModel";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { selectHomePageSearchBarValue } from "../../../features/homePageSearchBarValueSlice";
 import SearchSection from "../../../components/home/search/SearchSection";
-import { selectUser } from "../../../features/userSlice";
+import { selectUser, setUser } from "../../../features/userSlice";
 import Profiles from "../profiles/Profiles";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 function HomePage() {
   const rowCardWithMoreDetailsValue = useSelector(selectRowCardWithMoreDetails);
   const [genresList, setGenresList] = useState([]);
   const homePageSearchBarValue = useSelector(selectHomePageSearchBarValue);
   const user = useSelector(selectUser);
+  const dispatch = useDispatch()
   useEffect(() => {
+    const docRef = doc(db,'users',user?.userEmail);
+    onSnapshot(docRef,(d)=>{
+      dispatch(setUser(d.data()));
+    })
     const fetchData = async () => {
       const res = await axiosConfig.get(apiEndpoints.tvShowGenresList);
       setGenresList(res.data.genres);
     };
     fetchData();
   }, []);
-
-  return (
+ return (
     user.isLogin ?
     (user?.userActiveProfile ? 
     <div className="homePage">
@@ -41,6 +47,12 @@ function HomePage() {
           <>
             <Banner />
             <div className="homePage__mainContents">
+              
+             {user.userFavList.length > 0 && <HomePageRow
+                rowTitle="my list"
+                isWatchList={true}
+              />
+              }
               <HomePageRow
                 rowTitle="top rated tv shows"
                 apiUrl={apiEndpoints.topRatedTvShows}
