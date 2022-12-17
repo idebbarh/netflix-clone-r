@@ -1,24 +1,16 @@
 import { signOut } from 'firebase/auth';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { doc, updateDoc } from 'firebase/firestore';
+import React  from 'react'
+import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectUser, setUser } from '../../../features/userSlice';
+import { selectUser } from '../../../features/userSlice';
 import { auth, db } from '../../../firebase';
 import './HeaderAccountMenuOptions.css'
 import HeaderProfileIcon from './HeaderProfileIcon'
 function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null,setIsMenuOpen}) {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        const docRef = doc(db,'users',user?.userEmail);
-        onSnapshot(docRef,(d)=>{
-          dispatch(setUser(d.data()));
-        })
-      },[user?.userEmail]);
-
-    const signOutHandler = async ()=>{
+       const signOutHandler = async ()=>{
         try{
             await exitActiveProfileHandler();
           await signOut(auth);

@@ -56,7 +56,7 @@ function PreviewModel({genresList}) {
                     <h1 className="previewModel__movieTitle">{cardData?.title ? cardData?.title : cardData?.name}</h1>
                     <div className="previewModel__btns">
                         <button className="previewModel__btn btn--play"><PlayArrowIcon/>play</button>
-                        <CardOptions Icon={user?.userFavList?.map(fav=>fav.id).includes(cardData?.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userFavList?.map(fav=>fav.id).includes(cardData?.id) ? true : false}/>
+                        <CardOptions Icon={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData?.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData?.id) ? true : false}/>
                         <CardOptions Icon={ThumbUpOffAltIcon}  isRating={true}/>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ function MoreLikeThisCard({ cardData,showType }) {
             <div className="moreLikeThisCard__details">
                 <div className="moreLikeThisCard__detailsTop">
                     <h4 className="moreLikeThisCard__title">{cardData?.title ? cardData?.title : cardData?.name}</h4>
-            <CardOptions Icon={user?.userFavList?.map(fav=>fav.id).includes(cardData.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userFavList?.map(fav=>fav.id).includes(cardData.id) ? true : false}/>
+                    <CardOptions Icon={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData.id) ? true : false}/>
                 </div>
                 <div className="moreLikeThisCard__detailsBottom">
                     <p className="moreLikeThisCard__story">{truncateMovieStoryString(cardData?.overview,200)}</p>

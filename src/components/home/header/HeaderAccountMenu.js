@@ -16,15 +16,15 @@ function HeaderAccountMenu({setIsMenuOpen}) {
      
   return (
     <div className='headerAccountMenu'>
-       {user?.userProfiles?.filter(profile=>profile?.profileTitle!==user?.userActiveProfile?.profileTitle).map((profile,index)=>{
-            return <HeaderAccountMenuOptions Icon={profile.profileIconUrl} title={profile.profileTitle} isProfile={true} key={index} profile={profile} setIsMenuOpen={setIsMenuOpen}/>;
+       {user?.userProfiles?.filter(profile=>profile?.profileTitle!==user?.userActiveProfile?.profileTitle).map((profile)=>{
+            return <HeaderAccountMenuOptions Icon={profile.profileIconUrl} title={profile.profileTitle} isProfile={true} key={profile.profileTitle} profile={profile} setIsMenuOpen={setIsMenuOpen}/>;
        })}  
-       <HeaderAccountMenuOptions Icon={EditIcon} title='manage profiles' />
-       <HeaderAccountMenuOptions Icon={ExitToAppIcon} title='exit profile' isExitProfile={true}/>
-       <HeaderAccountMenuOptions Icon={MoveDownIcon} title='transfer profile' />
-       <HeaderAccountMenuOptions Icon={ManageAccountsIcon} title='account' />
-       <HeaderAccountMenuOptions Icon={HelpOutlineIcon} title='help center' />
-       <HeaderAccountMenuOptions title='sign out of netflix' isLogout={true}/>
+       <HeaderAccountMenuOptions Icon={EditIcon} title='manage profiles' key={'manage profiles'} />
+       <HeaderAccountMenuOptions Icon={ExitToAppIcon} title='exit profile' isExitProfile={true} key={'exit profile'}/>
+       <HeaderAccountMenuOptions Icon={MoveDownIcon} title='transfer profile'  key={'transfer profile'}/>
+       <HeaderAccountMenuOptions Icon={ManageAccountsIcon} title='account' key={'account'}/>
+       <HeaderAccountMenuOptions Icon={HelpOutlineIcon} title='help center' key={'help center'}/>
+       <HeaderAccountMenuOptions title='sign out of netflix' isLogout={true} key={'sign out of netflix'}/>
     </div>
   )
 }

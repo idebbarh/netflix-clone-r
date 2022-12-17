@@ -17,7 +17,7 @@ function AddProfile({setIsAddProfileOpen}) {
     const addProfileToDb = async ()=>{
         try{
             const userRef = doc(db,'users',user.userEmail);
-            await updateDoc(userRef,{userProfiles:arrayUnion(profileEntryData)});
+            await updateDoc(userRef,{userProfiles:arrayUnion({...profileEntryData,profileFavList:[]})});
         }catch(e){
             alert(e.message);
         }

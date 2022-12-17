@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { selectUser } from '../../../features/userSlice';
 import { useSelector } from 'react-redux';
-function HomePageRow({rowTitle,apiUrl,isWatchList=false,showType}) {
+function HomePageRow({rowTitle,apiUrl=null,isWatchList=false,showType}) {
     const [rowData,setRowData] = useState([]);
     const [sliderVal,setSliderVal] = useState(0);
     const [isMouseOnHomePageRow,setIsMouseOnHomePageRow] = useState(false);
@@ -23,9 +23,10 @@ function HomePageRow({rowTitle,apiUrl,isWatchList=false,showType}) {
         if(!isWatchList){
           fetchData()
         }else{
-         setRowData(user.userFavList)
+         setRowData(user.userActiveProfile.profileFavList)
         }
-    },[apiUrl,(isWatchList ? user.userFavList : null)]);
+    },[apiUrl,isWatchList ? user : null]);
+
     const moveSliderRight = ()=>{
     //     sliderRef.current.scrollBy(sliderRef.current.clientWidth,0);
     //    if(sliderRef.current.scrollWidth - sliderRef.current.scrollLeft === sliderRef.current.clientWidth){
@@ -83,7 +84,6 @@ function useIsInViewport(ref) {
         observer.disconnect();
       };
     }, [ref, observer]);
-  
     return isIntersecting;
   }
 export default HomePageRow

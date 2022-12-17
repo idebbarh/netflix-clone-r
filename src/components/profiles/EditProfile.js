@@ -8,7 +8,7 @@ import ProfileIconsSelector from './ProfileIconsSelector';
 
 function EditProfile({profileToEdit,setIsEditProfilePageOpen}) {
     const user = useSelector(selectUser)
-    const [profileNewData,setProfileNewData]=useState({profileTitle:user?.userProfiles[parseInt(profileToEdit)]?.profileTitle,profileIconUrl:user?.userProfiles[parseInt(profileToEdit)]?.profileIconUrl});
+    const [profileNewData,setProfileNewData]=useState({...user.userProfiles[parseInt(profileToEdit)]});
     const [isProfileIconsSelectorOpen,setIsProfileIconsSelectorOpen]=useState(false)
     const saveChangeHandler = async ()=>{
         const profileNames = [];

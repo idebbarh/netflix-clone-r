@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React, { useEffect  } from "react";
+import {  Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/home/home page/HomePage";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,6 @@ function App() {
         dispatch(removeUser());
       }
     });
-    
   }, []);
   return (
     <div className="app">

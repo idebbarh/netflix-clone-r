@@ -32,7 +32,7 @@ function RowCardWithMoreDetails({genresList}) {
         <img src={`${apiEndpoints.imageBaseURL}${cardData.backdrop_path}`} alt={cardData.name} className='rowCardWithMoreDetails__image'/>
         <div className="rowCardWithMoreDetails__options">
             <CardOptions Icon={PlayArrowIcon} isPlay={true}/>
-            <CardOptions Icon={user?.userFavList?.map(fav=>fav.id).includes(cardData.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userFavList?.map(fav=>fav.id).includes(cardData.id) ? true : false} isFromWatchList={isFromWatchList} />
+            <CardOptions Icon={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData.id) ? CheckIcon : AddIcon} isAddToMyList={true} showType={showType} data={cardData} isThisInFavList={user?.userActiveProfile.profileFavList?.map(fav=>fav.id).includes(cardData.id) ? true : false} isFromWatchList={isFromWatchList} />
             <CardOptions Icon={ThumbUpOffAltIcon}  isRating={true}/>
             <CardOptions Icon={ExpandMoreIcon}  isMoreInfo={true} data={cardData} showType={showType}/>
         </div>
