@@ -1,0 +1,28 @@
+.loadingScreenAnimationConatainer{
+    width: 7vw;
+    height: 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.loadingScreenAnimationConatainer > .loadingScreenAnimationConatainerCercle{
+    width: calc(100% + 5vw);    
+    height: calc(100% + 5vw);
+    position: absolute;
+    border: 0.5vw solid var(--netflix-red-color);
+    border-radius: 50%;
+    border-bottom: none;
+    border-left : none;
+    animation: loadingPageAnimation infinite 1s linear;
+}
+.loadingScreenAnimationConatainer > img{
+    max-width: 100%;
+     
+}
+@keyframes loadingPageAnimation{
+    100%{
+        transform: rotate(1turn);
+    }
+}

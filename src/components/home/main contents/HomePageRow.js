@@ -6,7 +6,7 @@ import RowTitle from './RowTitle'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { selectUser } from '../../../features/userSlice';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'; 
 function HomePageRow({rowTitle,apiUrl=null,isWatchList=false,showType}) {
     const [rowData,setRowData] = useState([]);
     const [sliderVal,setSliderVal] = useState(0);
@@ -25,7 +25,7 @@ function HomePageRow({rowTitle,apiUrl=null,isWatchList=false,showType}) {
         }else{
          setRowData(user.userActiveProfile.profileFavList)
         }
-    },[apiUrl,isWatchList ? user : null]);
+    },[apiUrl,isWatchList ? user : null,isWatchList]);
 
     const moveSliderRight = ()=>{
     //     sliderRef.current.scrollBy(sliderRef.current.clientWidth,0);

@@ -49,7 +49,7 @@ function SignupPage() {
             <div className="signupPage__logo" onClick={()=>navigate('/')}>
                 <img src={netflixLogo} alt="netflix logo" />
             </div>
-            <button className='signupPage__headerAuthLink'>sign in</button>
+            <button className='signupPage__headerAuthLink' onClick={()=>navigate("/login")}>sign in</button>
         </div>
         <div className="signupPage__signupBody">
             <form className="signupPage__form" onSubmit={(e)=>handleSubmit(e)}>

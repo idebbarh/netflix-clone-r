@@ -10,7 +10,7 @@ import { doc, getDoc } from "firebase/firestore";
 import LoginPage from "./pages/login/LoginPage";
 import GetStartedPage from "./pages/get started/GetStartedPage";
 import SignupPage from "./pages/signup/SignupPage";
-
+import LoadingScreen from './components/loading screen/LoadingScreen'
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -23,23 +23,27 @@ function App() {
   };
   
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+   const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
         getUserDataFromDataBase(user.email);
       } else {
         dispatch(removeUser());
       }
     });
+      return ()=>{
+          unsub();
+      }
   }, []);
   return (
     <div className="app">
-      {user && 
-      <Routes>
+      {user ? 
+          <Routes>
           <Route path="/" element={<GetStartedPage />} />
           <Route path="browser/*" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup/*" element={<SignupPage />} />
-      </Routes>}
+           <Route path="/signup/*" element={<SignupPage />} />
+           </Routes> :
+  <LoadingScreen/>}
     </div>
   );
 }
