@@ -7,10 +7,12 @@ import {auth, db} from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
+const PATHS = ["regform","planform","creditoption"]
 function SignupPage() {
     const [formData,setFormData] = useState({signupEmailInput:'',signupPassInput:''});
     const navigate = useNavigate();
     const user = useSelector(selectUser);
+    const [pathIndex,setPathIndex] = useState(0)
     useEffect(()=>{
         const signupEmailValue = localStorage.getItem('signupEmailValue');
         if(signupEmailValue){
@@ -29,8 +31,7 @@ function SignupPage() {
             alert(e.message);
           }
     }
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
+    const handleSubmit = async ()=>{
         createUserWithEmailAndPassword(auth, formData.signupEmailInput, formData.signupPassInput)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -52,14 +53,20 @@ function SignupPage() {
             <button className='signupPage__headerAuthLink' onClick={()=>navigate("/login")}>sign in</button>
         </div>
         <div className="signupPage__signupBody">
-            <form className="signupPage__form" onSubmit={(e)=>handleSubmit(e)}>
+      {/* <Routes>  */
+            /*     <Route path="/" document={<SettingUp/>}> */
+            /*     <Route path="/regform" document={<RegForm/>}> */
+            /*     <Route path="/planform" document={<PlanForm/>}> */
+            /*     <Route path="/creditoption" document={<Payment/>}> */
+            /* </Routes>  */}
+            <form className="signupPage__form" >
                 <h1 className="signupPage__formTitle">Create a password to start your membership</h1>
                 <h2 className="signupPage__formSubTitle">Just a few more steps and you're done!</h2>
                 <h2 className="signupPage__formSubTitle">We hate paperwork, too.</h2>
                 <input type="email" name="signupEmailInput" placeholder='Email or phone number' id="signupEmailInput" className="signupPage__input input--emailInput" value={formData.signupEmailInput} onChange={(e)=>setFormData(prevState=>({...prevState,[e.target.name]:e.target.value}))} required/>
                 <input type="password" name="signupPassInput" placeholder='password' id="signupPassInput" className="signupPage__input input--passInput" value={formData.signupPassInput} onChange={(e)=>setFormData(prevState=>({...prevState,[e.target.name]:e.target.value}))} required/>
-                <button className='signup__nextBtn'>next</button>
             </form>
+            <button className='signup__nextBtn' type="button" onClick={(e)=>handleSubmit()}>next</button>
         </div>
     </div>
   )

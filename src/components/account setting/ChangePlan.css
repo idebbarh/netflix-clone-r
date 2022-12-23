@@ -1,0 +1,28 @@
+.changePlan__plansContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.changePlan__continueBtn {
+  background-color: #077af5;
+  border: none;
+  color: var(--main-white-color);
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 55%);
+  text-transform: capitalize;
+  cursor: pointer;
+  margin: 1rem auto 0;
+  width: fit-content;
+  display: block;
+}
+.changePlan__continueBtn:hover {
+  background: #2490fd;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 55%);
+}
+.changePlan__continueBtn--inactive {
+  pointer-events: none;
+  background-color: #7ab4ee;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 20%);
+}

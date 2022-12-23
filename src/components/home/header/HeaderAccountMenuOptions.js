@@ -7,7 +7,7 @@ import { selectUser } from '../../../features/userSlice';
 import { auth, db } from '../../../firebase';
 import './HeaderAccountMenuOptions.css'
 import HeaderProfileIcon from './HeaderProfileIcon'
-function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null,setIsMenuOpen}) {
+function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null,setIsMenuOpen,isSetting=false}) {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
        const signOutHandler = async ()=>{
@@ -32,18 +32,21 @@ function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=
         }
     
       };
-    const onClickHandler = ()=>{
+    const onClickHandler = async ()=>{
         if(isProfile){
-            setActiveProfileHandler(profile);
+            await setActiveProfileHandler(profile);
             setIsMenuOpen();
+            navigate("/browser");
         }else if(isExitProfile){
             exitActiveProfileHandler();
+        }else if(isSetting){
+            navigate("/youraccount"); 
         }else{
             signOutHandler();
         }
     }
   return (
-    <div className='headerAccountMenuOptions' onClick={[isProfile,isExitProfile,isLogout].some(item=>item===true) ? onClickHandler : undefined} style={isLogout ? {width:'100%',padding:'15px',borderTop:'1px solid gray',justifyContent:'center'} : {}}>
+    <div className='headerAccountMenuOptions' onClick={[isProfile,isExitProfile,isLogout,isSetting].some(item=>item===true) ? onClickHandler : undefined} style={isLogout ? {width:'100%',padding:'15px',borderTop:'1px solid gray',justifyContent:'center'} : {}}>
         {!isLogout && (isProfile ? <HeaderProfileIcon Icon={Icon}/> : <Icon/>)}
         <span className='headerAccountMenuOptions__title'>{title}</span>
     </div>

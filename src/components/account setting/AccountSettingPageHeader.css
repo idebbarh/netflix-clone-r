@@ -1,0 +1,36 @@
+.accountSettingPageHeader{
+    top: 0;
+    left: 0;
+    height: 70px;
+    padding: 0 60px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color:rgb(13, 13, 13) ;
+    width: 100%;
+    z-index: 999;
+}
+@media (max-width:950px) {
+    .accountSettingPageHeader{
+        height: 41px;
+    }
+}
+.accountSettingPageHeader__logo{
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+@media (max-width:1024px) {
+    .accountSettingPageHeader__logo{
+        margin-right: 30px;
+    }
+}
+.accountSettingPageHeader__logo > img{
+    height: 25px;
+}
+@media (max-width:950px) {
+    .accountSettingPageHeader__logo > img{
+        height: 15px;
+    }
+}

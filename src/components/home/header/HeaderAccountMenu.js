@@ -22,7 +22,7 @@ function HeaderAccountMenu({setIsMenuOpen}) {
        <HeaderAccountMenuOptions Icon={EditIcon} title='manage profiles' key={'manage profiles'} />
        <HeaderAccountMenuOptions Icon={ExitToAppIcon} title='exit profile' isExitProfile={true} key={'exit profile'}/>
        <HeaderAccountMenuOptions Icon={MoveDownIcon} title='transfer profile'  key={'transfer profile'}/>
-       <HeaderAccountMenuOptions Icon={ManageAccountsIcon} title='account' key={'account'}/>
+       <HeaderAccountMenuOptions Icon={ManageAccountsIcon} title='account' key={'account'} isSetting={true}/>
        <HeaderAccountMenuOptions Icon={HelpOutlineIcon} title='help center' key={'help center'}/>
        <HeaderAccountMenuOptions title='sign out of netflix' isLogout={true} key={'sign out of netflix'}/>
     </div>
