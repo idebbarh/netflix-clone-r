@@ -1,6 +1,7 @@
 .accountSettingPage {
   background-color: #f2f2f2;
   position: relative;
+  min-height: 100vh;
 }
 .accountSettingPage__settingBody {
   padding: 140px 60px 70px;

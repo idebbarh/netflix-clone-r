@@ -1,0 +1,20 @@
+.planFormPlanInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+@media (max-width: 500px) {
+  .planFormPlanInfoContainer {
+    width: calc(100% / 4);
+  }
+}
+.planFormPlanInfoContainer > .gridCell {
+  justify-content: center;
+  font-weight: 500;
+  color: #737373;
+}
+.planFormPlanInfoContainer--active > .gridCell {
+  color: var(--netflix-red-color);
+}
