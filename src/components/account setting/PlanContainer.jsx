@@ -4,19 +4,20 @@ import CheckIcon from "@mui/icons-material/Check";
 
 function PlanContainer({
   title,
-  description,
   price,
   isActive,
-  planId,
+  prodId,
   setSelectedPlan,
+  quality,
+  resolution,
 }) {
   return (
     <div
       className={`planContainer ${isActive ? "planContainer--active" : ""}`}
-      onClick={() => setSelectedPlan(planId)}
+      onClick={() => setSelectedPlan(prodId)}
     >
       <h2 className="planContainer__title">{title}</h2>
-      <p className="planContainer__description">{description}</p>
+      <p className="planContainer__description">{quality}</p>
       <span className="planContainer__price">{price}</span>
       {isActive && (
         <span className="planContainer__checkBtn">

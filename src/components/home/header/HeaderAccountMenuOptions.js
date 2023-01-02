@@ -1,56 +1,84 @@
-import { signOut } from 'firebase/auth';
-import { doc, updateDoc } from 'firebase/firestore';
-import React  from 'react'
-import {  useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectUser } from '../../../features/userSlice';
-import { auth, db } from '../../../firebase';
-import './HeaderAccountMenuOptions.css'
-import HeaderProfileIcon from './HeaderProfileIcon'
-function HeaderAccountMenuOptions({isProfile=false,isLogout=false,isExitProfile=false,title,Icon=null,profile=null,setIsMenuOpen,isSetting=false}) {
-    const user = useSelector(selectUser);
-    const navigate = useNavigate();
-       const signOutHandler = async ()=>{
-        try{
-            await exitActiveProfileHandler();
-          await signOut(auth);
-          navigate('/');
-        }catch(e){
-          alert(e.message);
-        }
+import { signOut } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
+import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectUser } from "../../../features/userSlice";
+import { auth, db } from "../../../firebase";
+import "./HeaderAccountMenuOptions.css";
+import HeaderProfileIcon from "./HeaderProfileIcon";
+function HeaderAccountMenuOptions({
+  isProfile = false,
+  isLogout = false,
+  isExitProfile = false,
+  title,
+  Icon = null,
+  profile = null,
+  setIsMenuOpen,
+  isSetting = false,
+}) {
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const signOutHandler = async () => {
+    try {
+      await exitActiveProfileHandler();
+      await signOut(auth);
+      navigate("/");
+    } catch (e) {
+      alert(e.message);
     }
-    const exitActiveProfileHandler = async ()=>{
-        const userRef = doc(db,'users',user.userEmail);
-        await updateDoc(userRef,{userActiveProfile:null});
+  };
+  const exitActiveProfileHandler = async () => {
+    const userRef = doc(db, "users", user.userEmail);
+    await updateDoc(userRef, { userActiveProfile: null });
+  };
+  const setActiveProfileHandler = async (selectedProfile) => {
+    try {
+      const userRef = doc(db, "users", user?.userEmail);
+      await updateDoc(userRef, { userActiveProfile: selectedProfile });
+    } catch (e) {
+      alert(e.message);
     }
-    const setActiveProfileHandler = async (selectedProfile)=>{
-        try{
-          const userRef = doc(db,'users',user?.userEmail);
-          await updateDoc(userRef,{userActiveProfile:selectedProfile});
-        }catch(e){
-          alert(e.message);
-        }
-    
-      };
-    const onClickHandler = async ()=>{
-        if(isProfile){
-            await setActiveProfileHandler(profile);
-            setIsMenuOpen();
-            navigate("/browser");
-        }else if(isExitProfile){
-            exitActiveProfileHandler();
-        }else if(isSetting){
-            navigate("/youraccount"); 
-        }else{
-            signOutHandler();
-        }
+  };
+  const onClickHandler = async () => {
+    if (isProfile) {
+      await setActiveProfileHandler(profile);
+      setIsMenuOpen(false);
+      navigate("/browser");
+    } else if (isExitProfile) {
+      exitActiveProfileHandler();
+      navigate("/browser");
+    } else if (isSetting) {
+      navigate("/youraccount");
+    } else {
+      signOutHandler();
     }
+  };
   return (
-    <div className='headerAccountMenuOptions' onClick={[isProfile,isExitProfile,isLogout,isSetting].some(item=>item===true) ? onClickHandler : undefined} style={isLogout ? {width:'100%',padding:'15px',borderTop:'1px solid gray',justifyContent:'center'} : {}}>
-        {!isLogout && (isProfile ? <HeaderProfileIcon Icon={Icon}/> : <Icon/>)}
-        <span className='headerAccountMenuOptions__title'>{title}</span>
+    <div
+      className="headerAccountMenuOptions"
+      onClick={
+        [isProfile, isExitProfile, isLogout, isSetting].some(
+          (item) => item === true
+        )
+          ? onClickHandler
+          : undefined
+      }
+      style={
+        isLogout
+          ? {
+              width: "100%",
+              padding: "15px",
+              borderTop: "1px solid gray",
+              justifyContent: "center",
+            }
+          : {}
+      }
+    >
+      {!isLogout && (isProfile ? <HeaderProfileIcon Icon={Icon} /> : <Icon />)}
+      <span className="headerAccountMenuOptions__title">{title}</span>
     </div>
-  )
+  );
 }
 
-export default HeaderAccountMenuOptions
+export default HeaderAccountMenuOptions;

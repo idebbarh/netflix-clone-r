@@ -16,11 +16,9 @@ import { doc, setDoc } from "firebase/firestore";
 import SettingUp from "./settingup/SettingUp";
 import PlanForm from "./planform/PlanForm";
 import RegForm from "./regform/RegForm";
-import PaymentPage from "./creditoption/PaymentPage";
 const PATHS = {
   signup: "regform",
   regform: "planform",
-  planform: "creditoption",
 };
 
 function SignupPage() {
@@ -31,6 +29,7 @@ function SignupPage() {
     signupPassInput: "",
     isValidInfo: false,
   });
+  const [selectedPlan, setSelectedPlan] = useState("prod_2");
   const location = useLocation();
   const curPath =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
@@ -50,6 +49,7 @@ function SignupPage() {
         userProfiles: [],
         userActiveProfile: null,
         isLogin: true,
+        selectedPlan: selectedPlan,
       });
     } catch (e) {
       alert(e.message);
@@ -72,6 +72,8 @@ function SignupPage() {
   const handleNavigationToNexPage = () => {
     if (curPath in PATHS) {
       navigate(`${PATHS[curPath]}`);
+    } else {
+      handleSubmit();
     }
   };
   return user.isLogin ? (
@@ -104,11 +106,13 @@ function SignupPage() {
           />
           <Route
             path="planform"
-            element={<PlanForm isValidInfo={formData.isValidInfo} />}
-          />
-          <Route
-            path="creditoption"
-            element={<PaymentPage isValidInfo={formData.isValidInfo} />}
+            element={
+              <PlanForm
+                isValidInfo={formData.isValidInfo}
+                setSelectedPlan={setSelectedPlan}
+                selectedPlan={selectedPlan}
+              />
+            }
           />
         </Routes>
         {curPath !== "regform" && (
@@ -117,7 +121,7 @@ function SignupPage() {
             type="button"
             onClick={handleNavigationToNexPage}
           >
-            {!(curPath in PATHS) ? "pay" : "next"}
+            next
           </button>
         )}
       </div>

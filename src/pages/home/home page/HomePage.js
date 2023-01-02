@@ -13,24 +13,15 @@ import PreviewModel from "../../../components/home/main contents/PreviewModel";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { selectHomePageSearchBarValue } from "../../../features/homePageSearchBarValueSlice";
 import SearchSection from "../../../components/home/search/SearchSection";
-import { selectUser, setUser } from "../../../features/userSlice";
+import { selectUser } from "../../../features/userSlice";
 import Profiles from "../profiles/Profiles";
-import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../../../firebase";
 
 function HomePage() {
   const rowCardWithMoreDetailsValue = useSelector(selectRowCardWithMoreDetails);
   const [genresList, setGenresList] = useState([]);
   const homePageSearchBarValue = useSelector(selectHomePageSearchBarValue);
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   useEffect(() => {
-    if (user?.userEmail) {
-      const docRef = doc(db, "users", user?.userEmail);
-      onSnapshot(docRef, (d) => {
-        dispatch(setUser(d.data()));
-      });
-    }
     const fetchData = async () => {
       const res = await axiosConfig.get(apiEndpoints.tvShowGenresList);
       setGenresList(res.data.genres);

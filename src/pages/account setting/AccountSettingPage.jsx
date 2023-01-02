@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AccountSettingPageHeader from "../../components/account setting/AccountSettingPageHeader";
 import "./AccountSettingPage.css";
 import { Navigate } from "react-router-dom";
 import { selectUser } from "../../features/userSlice.js";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import ChangePlan from "../../components/account setting/ChangePlan";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 function AccountSettingPage() {
   const user = useSelector(selectUser);
-  const navigate = useNavigate();
   const [isChangePlanOpen, setIsChangePlanOpen] = useState(false);
+  const [selectedPlanInfo, setSelectedPlanInfo] = useState(null);
+  useEffect(() => {
+    const getPlanInfo = async () => {
+      const docRef = doc(db, "products", user.selectedPlan);
+      const plan = await getDoc(docRef);
+      setSelectedPlanInfo(() => ({ ...plan.data(), prodId: plan.id }));
+    };
+    getPlanInfo();
+  }, [user.selectedPlan]);
   return user.isLogin ? (
     <div className="accountSettingPage">
       <AccountSettingPageHeader />
@@ -22,13 +31,12 @@ function AccountSettingPage() {
           </button>
           <ul className="accountSettingPage__sectionInfo">
             <li className="bold">{user.userEmail}</li>
-            <li>Your next billing date is January 3, 2023.</li>
           </ul>
         </div>
         <div className="accountSettingPage__section">
           <h2 className="accountSettingPage__subTilte">PLAN DETAILS</h2>
           <ul className="accountSettingPage__sectionInfo">
-            <li className="bold">Standard</li>
+            <li className="bold">{selectedPlanInfo?.name}</li>
           </ul>
           <button
             className="accountSettingPage__changePlanBtn"
